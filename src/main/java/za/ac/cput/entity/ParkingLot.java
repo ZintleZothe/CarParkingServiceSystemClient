@@ -6,13 +6,12 @@
  */
 package za.ac.cput.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+
 import java.io.Serializable;
 
-@Entity
+
 public class ParkingLot implements Serializable {
-    @Id private String parkingLotID;
+    private String parkingLotID;
     private String campusName;
 
     private String parkingLotNumber;

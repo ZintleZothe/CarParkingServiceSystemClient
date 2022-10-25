@@ -1,7 +1,6 @@
 package za.ac.cput.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+
 import java.io.Serializable;
 
 /**
@@ -9,9 +8,9 @@ import java.io.Serializable;
  * Author: Abongile Tshopi (214254151)
  * Date: 09 April 2022
  */
-@Entity
+
 public class User implements Serializable {
-    @Id private String userID;
+    private String userID;
     private String firstName;
     private String lastName;
     private String address;

@@ -6,13 +6,11 @@ package za.ac.cput.entity;
   Date: 07 April 2022
  */
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.io.Serializable;
 
-@Entity
+
 public class Vehicle implements Serializable {
-    @Id
+
     private String vehicleNumberPlate;
     private String userID;
     private String vehicleModel;

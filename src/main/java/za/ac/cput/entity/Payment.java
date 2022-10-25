@@ -8,13 +8,12 @@ package za.ac.cput.entity;
 
 //import za.ac.cput.service.PaymentService;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+
 import java.io.Serializable;
 
-@Entity
+
 public class Payment implements Serializable {
-    @Id  private String paymentId ;
+    private String paymentId ;
     private  double paymentAmount;
     private String bankNumber;
 

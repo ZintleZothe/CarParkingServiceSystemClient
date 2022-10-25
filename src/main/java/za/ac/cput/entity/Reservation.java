@@ -6,15 +6,14 @@
  */
 package za.ac.cput.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+
 import java.io.Serializable;
 
-@Entity
+
 public class Reservation implements Serializable {
 
     //declaration of private fields
-    @Id private String reservationID;
+    private String reservationID;
     private String parkingSpaceID;
     private String dateOfReservation;
     private ReservationStatus reservationStatus;
