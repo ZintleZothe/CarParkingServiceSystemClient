@@ -1,5 +1,7 @@
 package za.ac.cput.views;
 
+import com.google.gson.Gson;
+import okhttp3.*;
 import za.ac.cput.entity.ParkingLot;
 import za.ac.cput.factory.ParkingLotFactory;
 
@@ -7,8 +9,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class StoreParkingLot implements ActionListener {
+
+    public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
+    private static OkHttpClient client = new OkHttpClient();
 
     private JFrame mainFrame;
     private JLabel lblAddParkingLotTitle;
@@ -39,6 +45,8 @@ public class StoreParkingLot implements ActionListener {
         mainFrame.add(txtAddParkingLotNumber);
         mainFrame.add(btnSave);
         mainFrame.add(btnCancel);
+        btnSave.addActionListener(this);
+        btnCancel.addActionListener(this);
         mainFrame.setSize(500, 200);
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainFrame.setVisible(true);
@@ -55,13 +63,33 @@ public class StoreParkingLot implements ActionListener {
         }
 
         if(e.getSource() == btnSave){
-            String URL = "http://localhost:8080/parkinglot/create";
-            ParkingLot parkingLot = ParkingLotFactory.build(txtAddParkingLotCampusName.getText(), txtAddParkingLotNumber.getText());
+            store(txtAddParkingLotCampusName.getText(),txtAddParkingLotNumber.getText());
+            txtAddParkingLotCampusName.setText("");
+            txtAddParkingLotNumber.setText("");
 
         }
     }
 
     public void store(String campusName, String parkingLotNumber){
+        try {
+            String URL = "http://localhost:8080/carparkingservice/parkinglot/create";
+            ParkingLot parkingLot = ParkingLotFactory.build(txtAddParkingLotCampusName.getText(), txtAddParkingLotNumber.getText());
+            Gson gson = new Gson();
+            String jsonString = gson.toJson(parkingLot);
+            String c = post(URL, jsonString);
+            if (c != null) {
+                JOptionPane.showMessageDialog(null, "Success save");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
 
+    public String post(String url, String json) throws IOException {
+        RequestBody body = RequestBody.create(JSON, json);
+        Request request = new Request.Builder().url(url).post(body).build();
+        try(Response response = client.newCall(request).execute()){
+            return response.body().string();
+        }
     }
 }
