@@ -9,18 +9,17 @@ public class HomePage2 extends JFrame implements ActionListener {
 
     private JPanel panelNorth;
     private JPanel panelCenter;
-    private JPanel  panelRB1, panelRB2;
     private JPanel panelSouth;
 
-    private JLabel lblEventLogo;
+    private JLabel lblSystemLogo;
     private JLabel lblHeading;
 
     private JLabel lblPadding1, lblPadding2,lblPadding3,lblPadding4,lblPadding5;
 
     private JLabel lblPadding6;
-    private JButton btnSignUp;
+    private JButton btnAdmin;
     private JLabel lblPadding7;
-    private JButton btnLogin;
+    private JButton btnUser;
     private JLabel lblPadding8;
     private JLabel lblPadding9, lblPadding10,lblPadding11,lblPadding12,lblPadding13;
 
@@ -33,7 +32,7 @@ public class HomePage2 extends JFrame implements ActionListener {
         panelCenter = new JPanel();
         panelSouth = new JPanel();
 
-        lblEventLogo = new JLabel(new ImageIcon("finalCar.png"));
+        lblSystemLogo = new JLabel(new ImageIcon("finalCar.png"));
         lblHeading = new JLabel("Car Parking Reservation");
 
         lblPadding1 = new JLabel();
@@ -43,9 +42,9 @@ public class HomePage2 extends JFrame implements ActionListener {
         lblPadding5 = new JLabel();
 
         lblPadding6 = new JLabel();
-        btnSignUp= new JButton("SIGN-UP");
+        btnAdmin= new JButton("ADMIN");
         lblPadding7 = new JLabel();
-        btnLogin = new JButton("LOGIN");
+        btnUser = new JButton("USER");
         lblPadding8 = new JLabel();
 
         lblPadding9 = new JLabel();
@@ -67,7 +66,7 @@ public class HomePage2 extends JFrame implements ActionListener {
         panelSouth.setLayout(new FlowLayout());
 
 
-        panelNorth.add(lblEventLogo);
+        panelNorth.add(lblSystemLogo);
         panelNorth.add(lblHeading);
         lblHeading.setFont(ft1);
         lblHeading.setForeground(Color.black);
@@ -86,18 +85,18 @@ public class HomePage2 extends JFrame implements ActionListener {
 
         lblPadding6.setFont(ft1);
         panelCenter.add(lblPadding6);
-        btnSignUp.setFont(ft2);
-        btnSignUp.setBackground(new Color(102,102,153));
-        btnSignUp.setForeground(Color.black);
-        btnSignUp.setHorizontalAlignment(JButton.CENTER);
-        panelCenter.add(btnSignUp);
+        btnAdmin.setFont(ft2);
+        btnAdmin.setBackground(new Color(102,102,153));
+        btnAdmin.setForeground(Color.white);
+        btnAdmin.setHorizontalAlignment(JButton.RIGHT);
+        panelCenter.add(btnAdmin);
         lblPadding7.setFont(ft1);
         panelCenter.add(lblPadding7);
-        btnLogin.setFont(ft2);
-        btnLogin.setBackground(new Color(102,102,153));
-        btnLogin.setForeground(Color.black);
-        btnLogin.setHorizontalAlignment(JButton.RIGHT);
-        panelCenter.add(btnLogin);
+        btnUser.setFont(ft2);
+        btnUser.setBackground(new Color(102,102,153));
+        btnUser.setForeground(Color.white);
+        btnUser.setHorizontalAlignment(JButton.RIGHT);
+        panelCenter.add(btnUser);
         lblPadding8.setFont(ft1);
         panelCenter.add(lblPadding8);
 
@@ -124,8 +123,8 @@ public class HomePage2 extends JFrame implements ActionListener {
         this.add(panelSouth, BorderLayout.SOUTH);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        btnSignUp.addActionListener(this);
-        btnLogin.addActionListener(this);
+        btnAdmin.addActionListener(this);
+        btnUser.addActionListener(this);
         btnExit.addActionListener(this);
 
         this.setSize(150, 100);
@@ -134,11 +133,12 @@ public class HomePage2 extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("SIGN-UP")) {
-           //sign-up page
+        if (e.getActionCommand().equals("ADMIN")) {
+           //
         }
-        if (e.getActionCommand().equals("LOGIN")) {
-           //directs to the login page
+        if (e.getActionCommand().equals("USER")) {
+            new UserRegistration().setGui();
+            dispose();
         }
 
         else if (e.getActionCommand().equals("EXIT")) {

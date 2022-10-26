@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class AddVehicle extends JFrame implements ActionListener {
+public class VehicleRegistration extends JFrame implements ActionListener {
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
 
     private static OkHttpClient client =new OkHttpClient();
@@ -46,7 +46,7 @@ public class AddVehicle extends JFrame implements ActionListener {
     private Font ft1, ft2;
 
 
-    public AddVehicle(){
+    public VehicleRegistration(){
         super("Car parking system > add vehicle");
         panelNorth = new JPanel();
         panelCenter = new JPanel();
@@ -64,15 +64,15 @@ public class AddVehicle extends JFrame implements ActionListener {
         lblUserIdError.setVisible(false);
         lblNumberPlate = new JLabel("Number Plate: ");
         txtNumberPlate = new JTextField();
-        lblNumberPlateError = new JLabel("*vehicle number-plate required");
+        lblNumberPlateError = new JLabel("*enter vehicle number-plate");
         lblNumberPlateError.setVisible(false);
         lblVehicleModel = new JLabel("Vehicle Model: ");
         txtVehicleModel = new JTextField();
-        lblVehicleModelError= new JLabel("*vehicle model required");
+        lblVehicleModelError= new JLabel("*enter vehicle model");
         lblVehicleModelError.setVisible(false);
         lblVehicleColor = new JLabel("Vehicle Color: ");
         txtVehicleColor= new JTextField();
-        lblVehicleColorError = new JLabel("*vehicle color required");
+        lblVehicleColorError = new JLabel("*enter vehicle color");
         lblVehicleColorError.setVisible(false);
         lblPadding4 = new JLabel();
         lblPadding5 = new JLabel();
@@ -221,18 +221,14 @@ public class AddVehicle extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e){
         if(e.getActionCommand().equals("SAVE")){
             if(isInputValid()){
-
                 store(txtNumberPlate.getText(),txtUserId.getText(),txtVehicleModel.getText(),txtVehicleColor.getText());
             }
         }
         else if(e.getActionCommand().equals("CLEAR")){
             clearForm();
         }
-
-        //goes back to last page
         else if(e.getActionCommand().equals("BACK")){
-            //place holder
-            new HomePage2().setHomePageGUI();
+            new UserMenu().setGui();
             dispose();
         }
     }
@@ -271,7 +267,7 @@ public class AddVehicle extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args){
-        new AddVehicle().setGUI();
+        new VehicleRegistration().setGUI();
     }
 }
 
