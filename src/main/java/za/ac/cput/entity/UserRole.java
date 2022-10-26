@@ -1,8 +1,7 @@
 package za.ac.cput.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+
 import java.io.Serializable;
 
 /**
@@ -10,10 +9,10 @@ import java.io.Serializable;
   * Student Number: 214254151
   * UserRole entity
   */
-@Entity
+
 public class UserRole implements Serializable {
 
-    @Id private String userID;
+    private String userID;
     private String roleID;
 
     public UserRole() {
