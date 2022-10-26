@@ -1,5 +1,8 @@
 package za.ac.cput.views;
 
+import za.ac.cput.entity.ParkingLot;
+import za.ac.cput.factory.ParkingLotFactory;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -37,6 +40,7 @@ public class StoreParkingLot implements ActionListener {
         mainFrame.add(btnSave);
         mainFrame.add(btnCancel);
         mainFrame.setSize(500, 200);
+        mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainFrame.setVisible(true);
     }
 
@@ -45,6 +49,19 @@ public class StoreParkingLot implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        if(e.getSource() == btnCancel){
+            System.exit(0);
+        }
+
+        if(e.getSource() == btnSave){
+            String URL = "http://localhost:8080/parkinglot/create";
+            ParkingLot parkingLot = ParkingLotFactory.build(txtAddParkingLotCampusName.getText(), txtAddParkingLotNumber.getText());
+
+        }
+    }
+
+    public void store(String campusName, String parkingLotNumber){
 
     }
 }
