@@ -12,7 +12,7 @@ import java.io.Serializable;
 public class Vehicle implements Serializable {
 
     private String vehicleNumberPlate;
-    private String userID;
+   // private String userID;
     private String vehicleModel;
     private String vehicleColour;
 
@@ -25,7 +25,7 @@ public class Vehicle implements Serializable {
     //
     private Vehicle(Builder builder){
         this.vehicleNumberPlate=builder.vehicleNumberPlate;
-        this.userID=builder.userID;
+       // this.userID=builder.userID;
         this.vehicleModel=builder.vehicleModel;
         this.vehicleColour=builder.vehicleColour;
 
@@ -36,9 +36,9 @@ public class Vehicle implements Serializable {
         return vehicleNumberPlate;
     }
 
-    public String getUserID() {
-        return userID;
-    }
+    //public String getUserID() {
+//        return userID;
+//    }
 
     public String getVehicleModel() {
         return vehicleModel;
@@ -51,7 +51,7 @@ public class Vehicle implements Serializable {
     //
     public static class Builder{
         private String vehicleNumberPlate;
-        private String userID;
+       // private String userID;
         private String vehicleModel;
         private String vehicleColour;
 
@@ -61,10 +61,10 @@ public class Vehicle implements Serializable {
             return this;
         }
 
-        public Builder setUserID(String userID){
-            this.userID=userID;
-            return this;
-        }
+//        public Builder setUserID(String userID){
+//            this.userID=userID;
+//            return this;
+//        }
 
         public Builder setVehicleModel(String vehicleModel){
             this.vehicleModel=vehicleModel;
@@ -83,7 +83,7 @@ public class Vehicle implements Serializable {
 
         public Builder copy(Vehicle vehicle){
             this.vehicleNumberPlate=vehicle.vehicleNumberPlate;
-            this.userID=vehicle.userID;
+          //  this.userID=vehicle.userID;
             this.vehicleModel=vehicle.vehicleModel;
             this.vehicleColour=vehicle.vehicleColour;
             return this;
@@ -94,7 +94,7 @@ public class Vehicle implements Serializable {
     public String toString() {
         return "Vehicle{" +
                 "vehicleNumberPlate='" + vehicleNumberPlate + '\'' +
-                ", userID='" + userID + '\'' +
+             //   ", userID='" + userID + '\'' +
                 ", vehicleModel='" + vehicleModel + '\'' +
                 ", vehicleColour='" + vehicleColour + '\'' +
                 '}';

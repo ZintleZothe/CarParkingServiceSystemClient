@@ -217,6 +217,7 @@ public class UserMenu extends JFrame implements ActionListener {
              new VehicleRegistration().setGUI();
              dispose();
         }
+
         if (e.getActionCommand().equals("VIEW PARKING SPACE")) {
             //view parking space page
         }

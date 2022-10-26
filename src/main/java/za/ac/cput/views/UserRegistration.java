@@ -2,10 +2,14 @@ package za.ac.cput.views;
 
 import com.google.gson.Gson;
 import okhttp3.*;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import za.ac.cput.entity.Role;
 import za.ac.cput.entity.User;
+import za.ac.cput.entity.Vehicle;
 import za.ac.cput.factory.RoleFactory;
 import za.ac.cput.factory.UserFactory;
+import za.ac.cput.factory.VehicleFactory;
 
 import javax.swing.*;
 import java.awt.*;
@@ -58,6 +62,20 @@ public class UserRegistration extends JFrame implements ActionListener {
     private JLabel lblEmailError;
 
     private JLabel lblPadding6, lblPadding7, lblPadding8;
+
+//    private JLabel lblNumberPlate;
+//    private JTextField txtNumberPlate;
+//    private JLabel lblNumberPlateError;
+//
+//    private JLabel lblVehicleModel;
+//    private JTextField txtVehicleModel;
+//    private JLabel lblVehicleModelError;
+//
+//    private JLabel lblVehicleColor;
+//    private JTextField txtVehicleColor;
+//    private JLabel lblVehicleColorError;
+//
+//    private JLabel lblPadding9, lblPadding10, lblPadding11;
 
     private JButton btnSave, btnClear,btnBack, btnNext;
     private Font ft1, ft2,ft3;
@@ -116,6 +134,24 @@ public class UserRegistration extends JFrame implements ActionListener {
         lblPadding7 = new JLabel();
         lblPadding8 = new JLabel();
 
+//        lblNumberPlate = new JLabel("Number Plate: ");
+//        txtNumberPlate = new JTextField();
+//        lblNumberPlateError = new JLabel("*enter vehicle number-plate");
+//        lblNumberPlateError.setVisible(false);
+//
+//        lblVehicleModel = new JLabel("Vehicle Model: ");
+//        txtVehicleModel = new JTextField();
+//        lblVehicleModelError= new JLabel("*enter vehicle model");
+//        lblVehicleModelError.setVisible(false);
+//
+//        lblVehicleColor = new JLabel("Vehicle Color: ");
+//        txtVehicleColor= new JTextField();
+//        lblVehicleColorError = new JLabel("*enter vehicle color");
+//        lblVehicleColorError.setVisible(false);
+//
+//        lblPadding9 = new JLabel();
+//        lblPadding10 = new JLabel();
+//        lblPadding11 = new JLabel();
         btnSave  =new JButton("SAVE");
         btnClear =new JButton("CLEAR");
         btnBack  =new JButton("BACK");
@@ -128,7 +164,7 @@ public class UserRegistration extends JFrame implements ActionListener {
 
     public void setGui(){
         panelNorth.setLayout(new FlowLayout());
-        panelCenter.setLayout(new GridLayout(9, 3));
+        panelCenter.setLayout(new GridLayout(8, 3));
         panelSouth.setLayout(new GridLayout(1, 4));
 
         panelNorth.add(lblHeading);
@@ -209,6 +245,41 @@ public class UserRegistration extends JFrame implements ActionListener {
         lblPadding8.setFont(ft2);
         panelCenter.add(lblPadding8);
 
+//        lblNumberPlate.setFont(ft2);
+//        lblNumberPlateError.setFont(ft2);
+//        lblNumberPlateError.setForeground(Color.red);
+//        lblNumberPlate.setHorizontalAlignment(JLabel.RIGHT);
+//        txtNumberPlate.setFont(ft2);
+//        panelCenter.add(lblNumberPlate);
+//        panelCenter.add(txtNumberPlate);
+//        panelCenter.add(lblNumberPlateError);
+//
+//        lblVehicleModel.setFont(ft2);
+//        lblVehicleModelError.setFont(ft2);
+//        lblVehicleModelError.setForeground(Color.red);
+//        lblVehicleModel.setHorizontalAlignment(JLabel.RIGHT);
+//        txtVehicleModel.setFont(ft2);
+//        panelCenter.add(lblVehicleModel);
+//        panelCenter.add(txtVehicleModel);
+//        panelCenter.add(lblVehicleModelError);
+//
+//        lblVehicleColor.setFont(ft2);
+//        lblVehicleColorError.setFont(ft2);
+//        lblVehicleColorError.setForeground(Color.red);
+//        lblVehicleColor.setHorizontalAlignment(JLabel.RIGHT);
+//        txtVehicleColor.setFont(ft2);
+//        panelCenter.add(lblVehicleColor);
+//        panelCenter.add(txtVehicleColor);
+//        panelCenter.add(lblVehicleColorError);
+//
+//        lblPadding9.setFont(ft1);
+//        panelCenter.add(lblPadding9);
+//        lblPadding10.setFont(ft1);
+//        panelCenter.add(lblPadding10);
+//        lblPadding11.setFont(ft1);
+//        panelCenter.add(lblPadding11);
+
+
         panelCenter.setBackground(new Color(128,128,128));
         btnSave.setFont(ft2);
         btnClear.setFont(ft2);
@@ -275,6 +346,30 @@ public class UserRegistration extends JFrame implements ActionListener {
         else
             lblEmailError.setVisible(false);
 
+//        if (txtNumberPlate.getText().equals("")) {
+//            lblNumberPlateError.setVisible(true);
+//            txtNumberPlate.requestFocus();
+//            valid = false;
+//        }
+//        else
+//            lblNumberPlateError.setVisible(false);
+//
+//        if (txtVehicleModel.getText().equals("")) {
+//            lblVehicleModelError.setVisible(true);
+//            txtVehicleModel.requestFocus();
+//            valid = false;
+//        }
+//        else
+//            lblVehicleModelError.setVisible(false);
+//
+//        if (txtVehicleColor.getText().equals("")) {
+//            lblVehicleColorError.setVisible(true);
+//            txtVehicleColor.requestFocus();
+//            valid = false;
+//        }
+//        else
+//            lblVehicleColorError.setVisible(false);
+
         return valid;
     }
 
@@ -290,6 +385,12 @@ public class UserRegistration extends JFrame implements ActionListener {
         lblCellPhoneError.setVisible(false);
         txtEmail.setText("");
         lblEmailError.setVisible(false);
+//        txtNumberPlate.setText("");
+//        lblNumberPlateError.setVisible(false);
+//        txtVehicleModel.setText("");
+//        lblVehicleModelError.setVisible(false);
+//        txtVehicleColor.setText("");
+//        lblVehicleColorError.setVisible(false);
         comboRoleName.setSelectedIndex(0);
     }
 
@@ -301,6 +402,7 @@ public class UserRegistration extends JFrame implements ActionListener {
                 storeUser(txtFirstName.getText(), txtLastName.getText(),
                         txtAddress.getText(), txtCellPhone.getText(),
                         txtEmail.getText());
+              //  storeVehicle(txtNumberPlate.getText(),txtVehicleModel.getText(),txtVehicleColor.getText());
                 clearForm();
             }
         }
@@ -334,15 +436,18 @@ public class UserRegistration extends JFrame implements ActionListener {
         }
     }
 
+
+
+
     public void storeUser(String firstName, String lastName, String address, String cellNumber, String emailAddress){
         try{
             final String URL="http://localhost:8080/carparkingservice/user/create";
-            User user = UserFactory.build(firstName,lastName,address,cellNumber,emailAddress);
+            User user= UserFactory.build(firstName,lastName,address,cellNumber,emailAddress);
             Gson g= new Gson();
             String jsonString= g.toJson(user);
             String u=post(URL,jsonString);
             if(u != null)
-                JOptionPane.showMessageDialog(null,"Saved!!," +'\n'+ "please keep your  UserId for vehicle registration: "+ '\n' + user.getUserID());
+                JOptionPane.showMessageDialog(null,"Saved!!,");
             else
                 JOptionPane.showMessageDialog(null,"Error");
         }
@@ -350,8 +455,28 @@ public class UserRegistration extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(null,e.getMessage());
         }
 
-
     }
+
+
+//    public void storeVehicle(String vehicleNumberPlate,String vehicleModel, String vehicleColour){
+//        try{
+//            final String URL="http://localhost:8080/carparkingservice/vehicle/create";
+//
+//            Vehicle vehicle = VehicleFactory.createVehicle(vehicleNumberPlate,vehicleModel,vehicleColour);
+//            Gson g= new Gson();
+//            String jsonString= g.toJson(vehicle);
+//            String v=post(URL,jsonString);
+////            if(v != null)
+////                JOptionPane.showMessageDialog(null,"Saved");
+////            else
+////                JOptionPane.showMessageDialog(null,"Error");
+//        }
+//        catch(Exception e){
+//            JOptionPane.showMessageDialog(null,e.getMessage());
+//        }
+//
+//
+//    }
 
     public String post(final String url, String json) throws IOException {
         RequestBody body = RequestBody.create(JSON, json);

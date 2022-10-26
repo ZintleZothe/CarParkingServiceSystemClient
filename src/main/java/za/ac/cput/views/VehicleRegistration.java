@@ -2,7 +2,9 @@ package za.ac.cput.views;
 
 import com.google.gson.Gson;
 import okhttp3.*;
+import za.ac.cput.entity.User;
 import za.ac.cput.entity.Vehicle;
+import za.ac.cput.factory.UserFactory;
 import za.ac.cput.factory.VehicleFactory;
 
 import javax.swing.*;
@@ -24,9 +26,9 @@ public class VehicleRegistration extends JFrame implements ActionListener {
 
     private JLabel lblPadding1, lblPadding2, lblPadding3;
 
-    private JLabel lblUserID;
-    private JTextField txtUserId;
-    private JLabel lblUserIdError;
+//    private JLabel lblUserID;
+//    private JTextField txtUserId;
+//    private JLabel lblUserIdError;
 
     private JLabel lblNumberPlate;
     private JTextField txtNumberPlate;
@@ -41,6 +43,7 @@ public class VehicleRegistration extends JFrame implements ActionListener {
     private JLabel lblVehicleColorError;
 
     private JLabel lblPadding4, lblPadding5, lblPadding6;
+
 
     private JButton btnSave, btnClear, btnBack;
     private Font ft1, ft2;
@@ -58,10 +61,10 @@ public class VehicleRegistration extends JFrame implements ActionListener {
         lblPadding2 = new JLabel();
         lblPadding3 = new JLabel();
 
-        lblUserID = new JLabel("userId: ");
-        txtUserId = new JTextField();
-        lblUserIdError= new JLabel("*please enter your user id");
-        lblUserIdError.setVisible(false);
+//        lblUserID = new JLabel("userId: ");
+//        txtUserId = new JTextField();
+//        lblUserIdError= new JLabel("*please enter your user id");
+//        lblUserIdError.setVisible(false);
         lblNumberPlate = new JLabel("Number Plate: ");
         txtNumberPlate = new JTextField();
         lblNumberPlateError = new JLabel("*enter vehicle number-plate");
@@ -88,7 +91,7 @@ public class VehicleRegistration extends JFrame implements ActionListener {
 
     public void setGUI(){
         panelNorth.setLayout(new FlowLayout());
-        panelCenter.setLayout(new GridLayout(6, 3));
+        panelCenter.setLayout(new GridLayout(5, 3));
         panelSouth.setLayout(new GridLayout(1, 3));
 
         panelNorth.add(lblHeading);
@@ -104,14 +107,14 @@ public class VehicleRegistration extends JFrame implements ActionListener {
         panelCenter.add(lblPadding3);
 
 
-        lblUserID.setFont(ft2);
-        lblUserIdError.setFont(ft2);
-        lblUserIdError.setForeground(Color.red);
-        lblUserID.setHorizontalAlignment(JLabel.RIGHT);
-        txtUserId.setFont(ft2);
-        panelCenter.add(lblUserID);
-        panelCenter.add(txtUserId);
-        panelCenter.add(lblUserIdError);
+//        lblUserID.setFont(ft2);
+//        lblUserIdError.setFont(ft2);
+//        lblUserIdError.setForeground(Color.red);
+//        lblUserID.setHorizontalAlignment(JLabel.RIGHT);
+//        txtUserId.setFont(ft2);
+//        panelCenter.add(lblUserID);
+//        panelCenter.add(txtUserId);
+//        panelCenter.add(lblUserIdError);
 
         lblNumberPlate.setFont(ft2);
         lblNumberPlateError.setFont(ft2);
@@ -170,13 +173,13 @@ public class VehicleRegistration extends JFrame implements ActionListener {
 
     private boolean isInputValid() {
         boolean valid = true;
-        if (txtUserId.getText().equals("")) {
-            lblUserIdError.setVisible(true);
-            txtUserId.requestFocus();
-            valid = false;
-        }
-        else
-            lblUserIdError.setVisible(false);
+//        if (txtUserId.getText().equals("")) {
+//            lblUserIdError.setVisible(true);
+//            txtUserId.requestFocus();
+//            valid = false;
+//        }
+//        else
+//            lblUserIdError.setVisible(false);
 
         if (txtNumberPlate.getText().equals("")) {
             lblNumberPlateError.setVisible(true);
@@ -206,22 +209,23 @@ public class VehicleRegistration extends JFrame implements ActionListener {
     }
 
     private void clearForm() {
-        txtUserId.setText("");
-        lblUserIdError.setVisible(false);
+//        txtUserId.setText("");
+//        lblUserIdError.setVisible(false);
         txtNumberPlate.setText("");
         lblNumberPlateError.setVisible(false);
         txtVehicleModel.setText("");
         lblVehicleModelError.setVisible(false);
         txtVehicleColor.setText("");
         lblVehicleColorError.setVisible(false);
-        txtUserId.requestFocus();
+        txtNumberPlate.requestFocus();
     }
 
 
     public void actionPerformed(ActionEvent e){
         if(e.getActionCommand().equals("SAVE")){
             if(isInputValid()){
-                store(txtNumberPlate.getText(),txtUserId.getText(),txtVehicleModel.getText(),txtVehicleColor.getText());
+                store(txtNumberPlate.getText(),txtVehicleModel.getText(),txtVehicleColor.getText());
+                clearForm();
             }
         }
         else if(e.getActionCommand().equals("CLEAR")){
@@ -233,11 +237,13 @@ public class VehicleRegistration extends JFrame implements ActionListener {
         }
     }
 
-    public void store(String vehicleNumberPlate,String userID,String vehicleModel, String vehicleColour){
+
+
+    public void store(String vehicleNumberPlate,String vehicleModel, String vehicleColour){
         try{
             final String URL="http://localhost:8080/carparkingservice/vehicle/create";
 
-            Vehicle vehicle = VehicleFactory.createVehicle(vehicleNumberPlate,userID,vehicleModel,vehicleColour);
+            Vehicle vehicle = VehicleFactory.createVehicle(vehicleNumberPlate,vehicleModel,vehicleColour);
             Gson g= new Gson();
             String jsonString= g.toJson(vehicle);
             String v=post(URL,jsonString);
